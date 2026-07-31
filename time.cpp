@@ -5,10 +5,7 @@
 using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+
+    cout<<5+1;
     
-    // Your code here
-    
-    return 0;
 }
