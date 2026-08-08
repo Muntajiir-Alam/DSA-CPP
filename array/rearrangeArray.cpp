@@ -6,31 +6,20 @@ using namespace std;
 vector<int> rearrangeArray(vector<int> &nums)
 {
     int n = nums.size();
-    vector<int> ansPos;
-    vector<int> ansNeg;
+    vector<int> ans(n,0);
+    int pos = 0, neg = 1;
 
     for (int i = 0; i < n; i++)
     {
         if (nums[i] > 0)
         {
-            ansPos.push_back(nums[i]);
+            ans[pos] = nums[i];
+            pos+=2;
         }
         else
         {
-            ansNeg.push_back(nums[i]);
-        }
-    }
-    vector<int> ans;
-    int pos = 0, neg = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (i % 2 == 0)
-        {
-            ans.push_back(ansPos[pos++]);
-        }
-        else
-        {
-            ans.push_back(ansNeg[neg++]);
+            ans[neg] = nums[i];
+            neg+=2;
         }
     }
 
