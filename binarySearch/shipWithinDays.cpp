@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <climits>
-#include <algorithm>
-#include <numeric>
 using namespace std;
 
 /*
@@ -18,8 +16,14 @@ using namespace std;
 int shipWithinDays(vector<int> &nums, int k)
 {
     int n = nums.size();
-    int i = *max_element(nums.begin(), nums.end());
-    int j = accumulate(nums.begin(), nums.end(), 0);
+    int i = nums[0], j = nums[0];
+
+    for (int idx = 1; idx < n; idx++)
+    {
+        j += nums[idx];
+        i = max(nums[idx], i);
+    }
+
     while (i < j)
     {
         int mid = i + (j - i) / 2;
@@ -33,6 +37,8 @@ int shipWithinDays(vector<int> &nums, int k)
                 curCap = 0;
             }
             curCap += nums[idx];
+            if (k < days)
+                break;
         }
 
         if (days > k)
